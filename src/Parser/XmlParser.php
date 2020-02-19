@@ -206,16 +206,12 @@ class XmlParser
         $phpTypes = explode('|', $meta->phpType);
 
         foreach ($phpTypes as $phpType) {
-            switch ($phpType) {
-                case 'integer':
-                case 'string':
-                case 'double':
-                case 'boolean':
-                case 'DateTime':
-                    continue;
-                default:
-                    return $meta->phpType !== '' ? new $phpType() : null;
+
+            if(in_array($phpType, ['integer', 'string', 'double', 'boolean', 'DateTime'])) {
+                continue;
             }
+
+            return $meta->phpType !== '' ? new $phpType() : null;
         }
 
         return null;
@@ -252,16 +248,12 @@ class XmlParser
         $phpTypes = explode('|', $meta->phpType);
 
         foreach ($phpTypes as $phpType) {
-            switch ($phpType) {
-                case 'integer':
-                case 'string':
-                case 'double':
-                case 'boolean':
-                case 'DateTime':
-                    continue;
-                default:
-                    return false;
+
+            if(in_array($phpType, ['integer', 'string', 'double', 'boolean', 'DateTime'])) {
+                continue;
             }
+
+            return false;
         }
 
         return true;
